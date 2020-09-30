@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+    <title>我的介绍</title>
+
+<!--	引入animate.css-->
+<!--
+-->
+	<link rel="stylesheet" href="css/animate.css">
+<!--    引入点击悬停效果css-->
+    <link rel="stylesheet" href="css/hover.css">
+<!--    引入字体库和css -->
+    <link rel="stylesheet" href="css/font-awesome.css">
+<!--	引入bootstrap-->
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <link rel="stylesheet" href="css/bootstrap-theme.css">
+    
+    <link rel="stylesheet" href="css/style.css">
+
+<!--	引入jquery-->
+	<script src="js/jquery-3.5.0.js"></script>
+    <script src="js/bootstrap.js"></script>
+<!--    <script src="js/index.js" ></script>-->
+    <script src="js/index-2.0.js"></script>
+<!--    <script src="js/test.js" ></script>-->
+
+</head>
+<body >
+
+    <!--用户自行更改背景模糊框-->
+    <div class="modal fade" id="changeBG" tabindex="-1" role="dialog" aria-labelledby="changeBGModalLabel">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h3 class="modal-title" id="changeBGModalLabel">更改背景图片</h3>
+                </div>
+                <div class="modal-body" style="overflow: scroll;">
+                      <div class="row">
+                            <div class="col-lg-3">
+                                <img src="img/bg0.jpg" class="hvr-shrink">
+                            </div>
+                          <div class="col-lg-3">
+                              <img src="img/bg1.jpg" class="hvr-shrink">
+                          </div>
+                          <div class="col-lg-3">
+                              <img src="img/bg2.jpg" class="hvr-shrink">
+                          </div>
+                          <div class="col-lg-3">
+                              <img src="img/bg3.jpg" class="hvr-shrink">
+                          </div>
+                      </div>
+                    <div class="row">
+                        <div class="col-lg-3">
+                            <img src="img/bg4.jpg" class="hvr-shrink">
+                        </div>
+                        <div class="col-lg-3">
+                            <img src="img/bg5.jpg" class="hvr-shrink">
+                        </div>
+                        <div class="col-lg-3">
+                            <img src="img/bg6.jpg" class="hvr-shrink">
+                        </div>
+                        <div class="col-lg-3">
+                            <img src="img/bg7.jpg" class="hvr-shrink">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-3">
+                            <img src="img/bg8.jpg" class="hvr-shrink">
+                        </div>
+                        <div class="col-lg-3">
+                            <img src="img/bg9.jpg" class="hvr-shrink">
+                        </div>
+                        <div class="col-lg-3">
+                            <img src="img/bg10.jpg" class="hvr-shrink">
+                        </div>
+                        <div class="col-lg-3">
+                            <img src="img/bg11.jpg" class="hvr-shrink">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-3">
+                            <img src="img/bg12.jpg" class="hvr-shrink">
+                        </div>
+                        <div class="col-lg-3">
+                            <img src="img/bg13.jpg" class="hvr-shrink">
+                        </div>
+                        <div class="col-lg-3">
+                            <img src="img/bg14.jpg" class="hvr-shrink">
+                        </div>
+                        <div class="col-lg-3">
+                            <img src="img/bg15.jpg" class="hvr-shrink">
+                        </div>
+                    </div>
+                  </table>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    
+    <div  id="nav_menu">
+        <span class="fa fa-desktop fa-3x hvr-shrink" id="nav_bg_button" data-toggle="modal" data-target="#changeBG"></span>
+        &nbsp; &nbsp; &nbsp;
+         <span class="fa fa-list fa-3x hvr-shrink" id="nav_position_button"></span>
+    </div>
+
+    
+    <!-- 头部 -->
+    <header class="animate__animated animate__bounceInDown " id="header_vertical">
+
+	
+        <p id="logo"  class="hvr-underline-from-center">
+            <img src="img/a1.ico" alt="Logo">
+            <span>邓亲优的个人介绍</span>&nbsp;&nbsp;
+        </p>
+        
+       
+      
+        <!-- 导航栏 -->
+        <nav>
+            <ul >
+                <div class="rightline"></div>
+				 <li><a href="index.html"> <span class="glyphicon glyphicon-home" aria-hidden="true" style=""></span>&nbsp;&nbsp;首页</a></li>
+				 <li><a href="hobby.html"><span class="glyphicon glyphicon-file" aria-hidden="true" style=""></span>&nbsp;&nbsp;我的作品</a></li>
+                <li><a href="hometown.html"><span class="glyphicon glyphicon-tree-deciduous" aria-hidden="true" style=""></span>&nbsp;&nbsp;我的家乡</a></li>
+                <li><a href="school.html"><span class="glyphicon glyphicon-education" aria-hidden="true" style=""></span>&nbsp;&nbsp;我的学校</a></li>
+                <li><a href="about.html"><span class="glyphicon glyphicon-earphone" aria-hidden="true" style=""></span>&nbsp;&nbsp;联系我吧</a></li>
+                <li><a href="logo.html"><span class="glyphicon glyphicon-plus" aria-hidden="true" style=""></span>&nbsp;&nbsp;登录</a></li>
+            </ul>
+        </nav>
+
+    </header>
+
+    
+<!--    空白条-->
+    <div class="blank"></div>
+    
+    
+    <!-- 内容 -->
+    <main style="width: 100%">
+        
+        <!-- 中心内容 -->
+        <div class="hero animate__animated animate__pulse " >
+            
+            <!-- 文本 -->
+            <div class="hero-content animate__animated animate__bounceInUp" >
+                <h1 class="hero-title">我叫邓亲优</h1>
+                <p class="hero-p ">是一个平凡而又普通的人</p>
+
+                <a class="hero-b hvr-grow-shadow fa fa-refresh" href="#">&nbsp;&nbsp;查看更多</a>
+                <a class="hero-b2 hvr-grow-shadow fa fa-plus" href="logo.html">&nbsp;&nbsp;登录</a>
+            </div>
+        </div>
+    
+        <div class="self_info">
+          ASDASDASD
+        </div>
+    
+        
+        
+
+
+    </main>
+
+<!--	底部-->
+	<div class="footer">
+            <div style="color: #ababab;background-color:  rgb(246,249,250);text-align: center;margin: 0 auto;font-size: 13px">
+				<br>
+                Copyright &nbsp;©  &nbsp;
+                2019-2020  &nbsp; <a href="http://47.94.164.171">www.qinyou.cn</a>， &nbsp;All  &nbsp;Rights &nbsp; Reserved &nbsp;
+                使用本网站即表示接受 &nbsp; 沁柚用户协议。版权所有 &nbsp; 九江学院31栋503沁柚工作室 邓亲优
+                <br>
+                九江学院 20180101981号 &nbsp;   赣ICP备（暂无） &nbsp;增值业务经营许可证： （暂无）&nbsp;网络文化经营许可证：（暂无）
+                <br>
+                自营主体经营证照（暂无）  &nbsp; 风险监测信息（暂无）  &nbsp; 互联网药品信息服务资格证书：（暂无）-学习性-（暂无）&nbsp; 网络交易第三方平台备案凭证：（暂无）
+                <br>
+                亲爱的学生老师，九江警方反诈劝阻电话“962110”系专门针对避免您财产被骗受损而设，请您一旦收到来电，立即接听。
+                <br>
+                公司名称：江西九江沁柚有限公司 | 公司地址：江西省九江市濂溪区九江学院主校区 | 电话：159-7067-4596
+                <br>
+                注明：本网站为学生于2020年9月制作的前端大作业，未经本人同意请勿擅自将此网站商用,否则后果自负
+            </div>
+        </div>
+
+</body>
+</html>

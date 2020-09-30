@@ -1,0 +1,276 @@
+/* resetting browser stuff */
+*     {
+  box-sizing: border-box;
+  text-decoration: none;
+}
+a{
+  cursor: pointer;
+  }
+html,
+body   {
+  margin: 0;
+  padding: 0;
+  line-height: 1.5;
+  font-size: 16px;
+  position: relative;
+}
+
+/* styling our overall page */
+body     {
+  background-image: url('../img/index_body.jpg');
+  background-size: cover;
+  /*background: #FFF;*/
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+
+/*更改图片的模态框*/
+.modal-body{
+  height:500px;
+  }
+.modal-body  img{
+  margin: 2px;
+  padding: 2px;
+  outline: 2px solid silver;
+  border: 5px white solid;
+  border-radius: 2%;
+  width: 200px;
+  height: 150px;
+  cursor: pointer;
+  }
+
+
+
+/*右上角图标*/
+#nav_menu{
+  position: absolute;
+  right: 1%;
+  top: 1%;
+  z-index: 10;
+  color: white;
+  cursor: pointer;
+  }
+#nav_position_button:hover{
+  color: dodgerblue;
+  }
+#nav_bg_button:hover{
+  color: dodgerblue;
+  }
+
+
+
+/* 导航栏横向时用的css 竖向从121行开始 */
+#header_vertical   {
+  background: #222;
+  color: #FFF;
+  padding: 20px 30px;
+	position: absolute;
+	left: 14%;
+	top: 0;
+	min-height: 780px;
+	opacity: 0.8;
+	/*border-left: 20px rgb(10,10,10) solid;*/
+  /*border-right: 20px rgb(10,10,10) solid  ;*/
+  box-shadow: 20px 10px 10px black;
+  z-index: 5;
+
+  
+
+
+;
+}
+/* logo */
+#header_vertical #logo         {
+/*  display: inline-block;*/
+  color: #FFF;
+  text-decoration: none;
+  width: 49%;
+  display: inline;
+  padding: 2px;
+}
+#header_vertical #logo img    {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  margin-right: 8px;
+  vertical-align: middle;
+}
+#header_vertical #logo span   {
+/*  display: inline-block;*/
+}
+
+/* main navigation */
+#header_vertical nav     {
+margin-top: 55%;
+	text-align: center;
+  width: 100%;
+	font-size: 17px;
+/*  display: inline-block;*/
+}
+#header_vertical nav ul   {
+  list-style: none;
+  position: relative;
+
+}
+#header_vertical .rightline{
+  position: absolute;
+  width: 3%;
+  height: 17%;
+  background: gray;
+  right: 0;
+  top: 0;
+  opacity: 0.8;
+  }
+#header_vertical nav ul li {
+	margin-top: 10%;
+ 
+/*  display: inline-block;*/
+}
+#header_vertical nav ul li a    {
+  color: #FFF;
+  text-decoration: none;
+  display: block;
+  padding: 10px 15px;
+  border-radius: 3px;
+  transition: 0.3s ease all;
+}
+#header_vertical nav ul li a:hover   {
+  text-decoration: none;
+  color: white;
+  background: #444;
+}
+
+
+
+/* 导航栏竖向时用的css 横向从38行开始 */
+#header_horizontal   {
+  background: #222;
+  color: #FFF;
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  min-height: 5%;
+  opacity: 0.75;
+  /*border-left: 20px rgb(10,10,10) solid;*/
+  /*border-right: 20px rgb(10,10,10) solid  ;*/
+  box-shadow: -10px 20px 15px 5px black;
+  z-index: 5;
+
+
+
+
+;
+  }
+/* logo */
+#header_horizontal #logo         {
+  /*  display: inline-block;*/
+  color: #FFF;
+  text-decoration: none;
+  width: 13%;
+  display: inline-block;
+  padding: 2px;
+  }
+#header_horizontal #logo img    {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  margin-right: 8px;
+  vertical-align: middle;
+  }
+#header_horizontal #logo span   {
+  /*  display: inline-block;*/
+  }
+
+/* main navigation */
+#header_horizontal nav     {
+  /*margin-top: 55%;*/
+  text-align: center;
+  width: 70%;
+  font-size: 17px;
+    display: inline-block;
+  }
+#header_horizontal nav ul   {
+  list-style: none;
+  position: relative;
+  
+  }
+#header_horizontal .rightline{
+  position: absolute;
+  width: 15%;
+  height: 5%;
+  background: gray;
+  left: 7%;
+  bottom: 0;
+  opacity: 0.8;
+  z-index: 12;
+  }
+#header_horizontal nav ul li {
+  margin-top: 2%;
+  width: 15%;
+    display: inline-block;
+  }
+#header_horizontal nav ul li a    {
+  color: #FFF;
+  text-decoration: none;
+  display: block;
+  padding: 10px 15px;
+  border-radius: 3px;
+  transition: 0.3s ease all;
+  }
+#header_horizontal nav ul li a:hover   {
+  text-decoration: none;
+  color: white;
+  background: #444;
+  }
+
+
+
+
+
+/* styling our main content */
+.hero           {
+  min-height: 780px;
+  position: relative;
+  background-image: url('../img/bg0.jpg');
+  background-size: cover;
+  opacity: 0.9;
+}
+.hero-content   {
+  color: #FFF;
+  padding-top: 14%;
+	margin-left: 50%;
+	text-align: left;
+	
+}
+.hero-content h1   {
+  font-size: 40px;
+  /*margin: 0;*/
+  
+}
+.hero-content p    {
+  font-size: 20px;
+}
+.hero-content a    {
+  display: inline-block;
+  color: #FFF;
+  border: 3px solid #FFF;
+  border-radius: 3px;
+  padding: 15px 30px;
+  margin-right: 5%;
+  margin-top: 3%;
+  text-decoration: none;
+  font-size: 18px;
+}
+
+.self_info{
+  width: 49%;
+  display: none;
+  }
+
+
+
+
+
+
+
