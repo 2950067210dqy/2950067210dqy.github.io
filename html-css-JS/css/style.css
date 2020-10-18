@@ -73,11 +73,7 @@ body     {
   /*border-right: 20px rgb(10,10,10) solid  ;*/
   box-shadow: 20px 10px 10px black;
   z-index: 5;
-
-  
-
-
-;
+  border-radius: 3%;
 }
 /* logo */
 #header_vertical #logo         {
@@ -89,8 +85,8 @@ body     {
   padding: 2px;
 }
 #header_vertical #logo img    {
-  width: 50px;
-  height: 50px;
+  width: 60px;
+  height: 60px;
   border-radius: 50%;
   margin-right: 8px;
   vertical-align: middle;
@@ -229,13 +225,17 @@ margin-top: 55%;
 
 
 /* styling our main content */
+main{
+  position: relative;
+  }
 .hero           {
   min-height: 780px;
   position: relative;
   background-image: url('../img/bg0.jpg');
   background-size: cover;
-  opacity: 0.9;
+  /*opacity: 0.9;*/
 }
+
 .hero-content   {
   color: #FFF;
   padding-top: 14%;
@@ -252,7 +252,7 @@ margin-top: 55%;
   font-size: 20px;
 }
 .hero-content a    {
-  display: inline-block;
+  /*display: inline-block;*/
   color: #FFF;
   border: 3px solid #FFF;
   border-radius: 3px;
@@ -262,10 +262,97 @@ margin-top: 55%;
   text-decoration: none;
   font-size: 18px;
 }
+.hero-b,.hero-b2{
+  display:none;
+  }
 
+/*子页面*/
 .self_info{
-  width: 49%;
+  width: 55%;
   display: none;
+  height: 780px;
+  overflow:hidden;
+  position: absolute;
+  right: 0;
+  top: 0;
+  border-bottom: 20px solid silver;
+  opacity: 0.95;
+  /*opacity: 0.8;*/
+  }
+
+/*子菜单*/
+.sub_nav{
+  display: none;
+  
+  background: rgb(246,248,250);
+  color: #FFF;
+  padding-top: 1%;
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 27%;
+  height: 780px;
+  opacity: 0.95;
+  /*border-left: 20px rgb(10,10,10) solid;*/
+  /*border-right: 20px rgb(10,10,10) solid  ;*/
+  z-index: 5;
+  /*border-radius: 3%;*/
+  
+  }
+.sub_nav .self_introduce{
+  width: 80%;
+  height: 62%;
+  background: rgb(48,115,173);
+  border-radius: 3%;
+  padding-top: 7%;
+  }
+.sub_nav .self_introduce .head{
+  width: 75%;
+  height: 31%;
+
+  }
+.sub_nav .self_introduce .head .head_img{
+  width: 46%;
+  height: 100%;
+  display: inline;
+  float: left;
+  }
+.sub_nav .self_introduce .head .head_img img{
+  width: 100%;
+  height: 100%;
+  border: 4px solid whitesmoke;
+  border-radius: 3%;
+  }
+.sub_nav .self_introduce .head .head_msg{
+  display: inline;
+  float: right;
+  width: 47%;
+  height: 100%;
+ 
+  }
+.sub_nav .self_introduce .center{
+  width: 75%;
+  height: 58%;
+  margin-top: 7%;
+  }
+.sub_nav  .website_msg{
+  width: 80%;
+  height: 24%;
+  background: #008899;
+  border-radius: 3%;
+  margin-top: 6%;
+  padding-top: 7%;
+  }
+.sub_nav  .website_msg .website_conn{
+  width: 80%;
+  height: 80%;
+  
+  }
+.sub_nav  .website_msg .website_conn small{
+  color: white;
+  }
+.sub_nav  .website_msg .website_conn small a{
+  color: white;
   }
 
 

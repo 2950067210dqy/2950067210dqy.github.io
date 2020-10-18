@@ -18,7 +18,7 @@ function(){
 				$('.rightline').addClass("animate__animated animate__bounceInDown");
 				break;
 			case 1:
-				changeStyle(this,"虽不新奇,却广泛","我的作品虽不新奇，但不妨来看看哦！","  查看更多","  登录","hobby.html");
+				changeStyle(this,"虽不新奇,却广泛","我的作品虽不新奇，但不妨来看看哦！","  查看更多","  登录","works.html");
 				$('.hero-content').addClass("animate__animated animate__bounceInDown");
 				$('.hero').addClass("animate__animated animate__pulse");
 				changeLiBg(this);

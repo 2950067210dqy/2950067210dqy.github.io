@@ -1,25 +1,13 @@
-
-//创建添加动画函数
-const addAnimateCss=(element,animate,animate_preStr="animate__")=>new Promise(((resolve, reject) => {
-	const animateName=`${animate_preStr}${animate}`;
-	let node;
-	node=$(element);
-	node.addClass(`${animate_preStr}animated ${animateName}`);
-	//当动画结束时，调用此函数
-	function handleAnimationEnd() {
-		node.removeClass(`${animate_preStr}animated ${animateName}`);
-		resolve(element+"动画结束了");
-	}
-	
-	//添加动画结束监听
-	node.one("animationend",handleAnimationEnd);
-}));
-
+//记录导航栏之前点击的下标
+var nav_oldClick_index=0;
+//记录导航栏现在点击的下标
+var nav_newClick_index=0;
+var hero_b_click_bool=false;
 //nav导航栏所有文字
 //创建一个导航栏元素模拟类
-let NUMBER=0
-let Nav={
-	createNew:function (hero_title,hero_p,hero_b,hero_b2,hero_b2_addre,flag=NUMBER++) {
+var NUMBER=0
+var Nav={
+	createNew:function (hero_title,hero_p,hero_b,hero_b2,hero_b_addre,all_color=[],head_img_addre,flag=NUMBER++) {
 		let nav={
 			//改变导航栏文字
 			changeWords:function () {
@@ -29,12 +17,17 @@ let Nav={
  	            $('.hero-b2').text(this.hero_b2);
 			},
 			//改变导航栏链接地址
-			changeAddre:function (addre="logo.html") {
-				$('.hero-b').attr("href",addre);
-				$('.hero-b2').attr("href",this.hero_b2_addre);
+			changeAddre:function (addre="#") {
+				$(".self_info>iframe").attr("src",this.hero_b_addre);
+				$(".self_info>iframe").attr("href",this.hero_b_addre);
+				// $('.hero-b').attr("href",this.hero_b_addre);
+				$('.hero-b2').attr("href",addre);
+				$(".hero-b").css({"display":"inline-block"});
+				$(".hero-b2").css({"display":"inline-block"});
 			},
 			//改变导航栏li标签的背景颜色
-			changeNavBg:function (doc,background_color="background-color:#444") {
+			changeNavBg:function (doc,background_color="#444") {
+				background_color="background-color:"+background_color;
 				$('li').attr("style","");
 				$(doc).attr("style",background_color);
 			},
@@ -46,29 +39,71 @@ let Nav={
 			changeTL:function(){
 				$(".rightline").css("left",7+15*this.flag+"%");
 			},
-			//改变背景颜色
+			//改变背景
 			changeBg:function(){
 				let str="url('img/bg"+this.flag+".jpg')";
 				$('.hero').css("background-image",str);
 				// $('body').css("background-image",str);
 			},
-			changeStyle:function (doc,header_id,li_width=0,li_height=0,) {
+			//改变所有区域里的颜色
+			changeAllColor:function (doc) {
+				$(".self_introduce").css({"background":this.all_color[0]});
+				$(".website_msg").css({"background":this.all_color[1]});
+				$(".head_img>img").attr("src",this.head_img_addre);
+				if(hero_b_click_bool){
+					$("header").css("background",nav_text_list[this.flag].getAll_color()[0]);
+					console.log(nav_text_list[this.flag].getAll_color()[0]);
+					$(".rightline").css("background",nav_text_list[this.flag].getAll_color()[1]);
+					this.changeNavBg(doc,nav_text_list[this.flag].getAll_color()[1]);
+				}
+			}
+			,
+			getAll_color:function () {
+				return this.all_color;
+			}
+			,
+			changeStyle:function (doc,header_id,nav_index,li_width=0,li_height=0,) {
 				this.changeWords();
 				this.changeAddre();
 				this.changeNavBg(doc);
 				this.changeBg();
+				this.changeAllColor(doc);
 				if(header_id=="header_horizontal"){
+					
+					
 					this.changeTL();
-					addAnimateCss(".rightline","slideInLeft");
-					addAnimateCss('.hero',"slideInRight");
-					addAnimateCss('.hero-content',"slideInRight");
+					if(nav_index>=nav_oldClick_index){
+						addAnimateCss(".rightline","slideInLeft");
+						addAnimateCss('.hero',"slideInRight");
+						addAnimateCss('.hero-content',"slideInRight");
+					}else{
+						addAnimateCss(".rightline","slideInRight");
+						addAnimateCss('.hero',"slideInLeft");
+						addAnimateCss('.hero-content',"slideInLeft");
+					}
+					$(".self_info>iframe").contents().find("img").removeClass("img_vertical").addClass("img_horizontal");
 				}else{
+					
 					this.changeRL();
-					addAnimateCss(".rightline","slideInDown");
-					addAnimateCss('.hero',"slideInDown");
-					addAnimateCss('.hero-content',"slideInDown");
+					if(nav_index>=nav_oldClick_index){
+						addAnimateCss(".rightline","slideInDown");
+						addAnimateCss('.hero',"slideInDown");
+						addAnimateCss('.hero-content',"slideInDown");
+					}else{
+						addAnimateCss(".rightline","slideInUp");
+						addAnimateCss('.hero',"slideInUp");
+						addAnimateCss('.hero-content',"slideInUp");
+					}
+					$(".self_info>iframe").contents().find(".img_vertical").removeClass("img_horizontal").addClass("img_vertical");
+				}
+				if(nav_index>=nav_oldClick_index){
+					addAnimateCss('.self_info',"slideInDown");
+				}else{
+					addAnimateCss('.self_info',"slideInUp");
 				}
 				
+				
+				nav_oldClick_index=nav_index;
 				
 			}
 		};
@@ -77,71 +112,122 @@ let Nav={
 		nav.hero_p=hero_p;
 		nav.hero_b=hero_b;
 		nav.hero_b2=hero_b2;
-		nav.hero_b2_addre=hero_b2_addre;
+		nav.hero_b_addre=hero_b_addre;
+		nav.all_color=all_color;
+		nav.head_img_addre=head_img_addre;
 		return nav;
 	}
 
 };
 //导航栏元素
-let nav_text_list=[
-	Nav.createNew("我叫邓亲优","是一个平凡而又普通的人"," 查看更多","  登录","logo.html"),
-	Nav.createNew("虽不新奇,却广泛","我的作品虽不新奇，但不妨来看看哦！","  查看更多","  登录","hobby.html"),
-	Nav.createNew("豫章-南昌","豫章故郡，洪都新府,星分翼轸.地接衡庐。","  查看更多","  登录","hometown.html"),
-	Nav.createNew("九江学院（JJU）","坐落于庐山之麓、鄱阳湖之畔","  查看更多","  登录","school.html"),
-	Nav.createNew("想对我说什么","留言框，联系方式等","  查看更多","  登录","about.html"),
-	Nav.createNew(" "," ","  注册","  登录","regist.html"),
+var nav_text_list=[
+	Nav.createNew("我叫邓亲优","是一个平凡而又普通的人","  注册","  登录","#",["#337ab7","#008899"],"use_img/head.jpg"),
+	Nav.createNew("虽不新奇,却广泛","我的作品虽不新奇，但不妨来看看哦！","  查看更多","  登录","works.html#panel_0",["#337ab7","#008899"],"use_img/head.jpg"),
+	Nav.createNew("豫章-南昌","豫章故郡，洪都新府,星分翼轸.地接衡庐。","  查看更多","  登录","hometown.html#panel_0",["#460e44","#003472"],"use_img/head_1.jpg"),
+	Nav.createNew("九江学院（JJU）","坐落于庐山之麓、鄱阳湖之畔","  查看更多","  登录","school.html#panel_0",["#640125","#16160e"],"use_img/head_3.jpg"),
+	Nav.createNew("想对我说什么","留言框，联系方式等","  查看更多","  登录","about.html#panel_0",["#337ab7","#008899"],"use_img/head.jpg"),
+	Nav.createNew(" "," ","  注册","  登录","logo.html",["#392f41","#5d513c"],"use_img/head.jpg"),
 ];
 
-
-
-
-// console.log(nav_text_list);
 
 
 
 $(document).ready(
 	()=>new Promise((resolve, reject) => {
 		removeStartAnimation(resolve);
-	}).then(value=>{
-		nav_hover();
+	}).then(resolve=>{
+		nav_click();
 		nav_location();
 		nav_position();
 		changeBgBySelf();
-		nav_click();
-		console.log(value);
+		hero_b_click();
+		console.log(resolve);
 	})
 );
 
 
-//用户点击导航栏时
-function nav_click() {
-	$("nav>ul>li").each(function (i) {
-		if(i>0&&i<$("nav>ul>li").length-1){
-			$(this).find("a").removeAttr("href");
-			$(this).on("click",e=>{
-				$(".hero").css({"width":"50%"});
-				$("body").css({"background-image":"none","background-color":"whitesmoke"})
-				$("#nav_menu").css({"right":"none","left":"1%"});
-				$(".hero-content").css({"display":"none"});
-				$("header").css({"left":"34%"});
-				$("#nav_position_button").css({"display":"none"});
-				$(".self_info").css({"display":"block"});
-				addAnimateCss("header","slideInLeft");
-				addAnimateCss("#nav_menu","slideInRight");
-				addAnimateCss(".hero","slideInRight")
-			});
-		}else{
-			$(this).on("click",e=>{
-				$(".hero").css({"width":"100%"});
-				$("body").css({"background-image":"url('../img/index_body.jpg')"})
-				$("#nav_menu").css({"left":"none","right":"1%"});
-				$(".hero-content").css({"display":"block"});
-				$("#nav_position_button").css({"display":"block"});
-				$(".self_info").css({"display":"none"});
-			});
-		}
-		
+//用户点击查看更多或登录或注册按钮时
+function hero_b_click() {
+   
+	   $(".hero-b,.hero-b2").on("click",e=>{
+	   	    if($(e.target).hasClass("hero-b")){
+		        hero_b_click_bool=true;
+		        if($("header").attr("id")=="header_vertical"){
+			        changeStyleByFindAllByheader_vertical();
+		        }else{
+			        changeStyleByFindAllByheader_horizontal();
+		        }
+		    }else{
+		       
+		        hero_b_click_bool=true;
+		        if($("header").attr("id")=="header_vertical"){
+			        changeStyleByFindAllByheader_vertical(true);
+		        }else{
+			        changeStyleByFindAllByheader_horizontal(true);
+		        }
+	        }
+		 
+		   
+			
 	});
+}
+
+
+
+
+//查看内容时需要更换的样式(当导航栏横的)
+function  changeStyleByFindAllByheader_horizontal(hero_b2_bool=false) {
+	if (hero_b2_bool){
+		$('li').attr("style","");
+		$(".rightline").css("left",7+15*($("nav>ul:first>li").length-1)+"%")
+		$(".self_info>iframe").attr({"src":"logo.html#panel_1","href":"logo.html#panel_1"});
+		$(".self_info>iframe").contents().find("li").removeClass("active");
+		$($(".self_info>iframe").contents().find("li")[1]).addClass("active");
+		$("header").css({"border-radius":"3%","box-shadow":"none","z-index":"5","opacity":"0.95"});
+		nav_text_list[nav_text_list.length-1].changeAllColor($("nav>ul:first>li")[$("nav>ul:first>li").length-1]);
+	}else {
+		$("header").css({"border-radius":"3%","box-shadow":"none","z-index":"5","background":nav_text_list[nav_newClick_index].getAll_color()[0],"opacity":"0.95"});
+	}
+	
+	$(".self_info>iframe").contents().find("img").removeClass("img_vertical").addClass("img_horizontal");
+	$("body").css({"background-image":"none","background-color":"whitesmoke"})
+	$("#nav_menu").css({"right":"1%","top":"2%"});
+	$(".hero-content").css({"display":"none"});
+	
+	$("#nav_position_button").css({"display":"none"});
+	$(".self_info").css({"display":"inline-block","width":"73%","top":"9%"});
+	$(".sub_nav").css({"display":"inline-block","top":"8%"});
+	addAnimateCss("header","slideInLeft");
+	addAnimateCss("#nav_menu","slideInRight");
+	addAnimateCss(".hero","slideInRight")
+	addAnimateCss(".self_info","slideInRight");
+	addAnimateCss(".sub_nav","slideInRight");
+}
+//查看内容时需要更换的样式(当导航栏竖的)
+function  changeStyleByFindAllByheader_vertical(hero_b2_bool=false) {
+	if (hero_b2_bool){
+		$('li').attr("style","");
+		$(".rightline").css("top",17*($("nav>ul:first>li").length-1)+"%")
+		$(".self_info>iframe").attr({"src":"logo.html#panel_1","href":"logo.html#panel_1"});
+		$(".self_info>iframe").contents().find("li").removeClass("active");
+		$($(".self_info>iframe").contents().find("li")[1]).addClass("active");
+		nav_text_list[nav_text_list.length-1].changeAllColor($("nav>ul:first>li")[$("nav>ul:first>li").length-1]);
+		$("header").css({"left":"27%","border-radius":"3%","box-shadow":"none","z-index":"1","opacity":"0.95"});
+	}else {
+		$("header").css({"left":"27%","border-radius":"3%","box-shadow":"none","z-index":"5","background":nav_text_list[nav_newClick_index].getAll_color()[0],"opacity":"0.95"});
+	}
+	$("body").css({"background-image":"none","background-color":"whitesmoke"})
+	$("#nav_menu").css({"right":"59%","top":"63%"});
+	$(".hero-content").css({"display":"none"});
+	
+	$("#nav_position_button").css({"display":"none"});
+	$(".self_info").css({"display":"inline-block"});
+	$(".sub_nav").css({"display":"inline-block"});
+	addAnimateCss("header","slideInLeft");
+	addAnimateCss("#nav_menu","slideInRight");
+	addAnimateCss(".hero","slideInRight")
+	addAnimateCss(".self_info","slideInRight");
+	addAnimateCss(".sub_nav","slideInRight");
 }
 
 
@@ -167,11 +253,12 @@ function changeBgBySelf() {
 	
 }
 
-//实现导航栏hover效果
-function nav_hover(header_id) {
+//实现导航栏点击效果
+function nav_click(header_id) {
 	$("nav>ul:first>li").each(function(i){
-		$(this).on("mouseover",()=>{
-			nav_text_list[i].changeStyle(this,$("header").attr("id"));
+		$(this).on("click",()=>{
+			nav_newClick_index=i;
+			nav_text_list[i].changeStyle(this,$("header").attr("id"),i);
 		});
 	});
 }
@@ -285,13 +372,13 @@ function nav_location() {
 			$("header").off("mousemove");
 			$("header").off("mouseup");
 			$("header").css("cursor","");
-			if(random==1){
-				addAnimateCss("header","shakeX");
-				random=0;
-			}else{
-				addAnimateCss("header","shakeY");
-				random=1;
-			}
+			// if(random==1){
+			// 	addAnimateCss("header","shakeX");
+			// 	random=0;
+			// }else{
+			// 	addAnimateCss("header","shakeY");
+			// 	random=1;
+			// }
 			
 		});
 	});
