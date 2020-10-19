@@ -283,7 +283,7 @@ main{
 /*子菜单*/
 .sub_nav{
   display: none;
-  
+  border-bottom: 20px solid silver;
   background: rgb(246,248,250);
   color: #FFF;
   padding-top: 1%;
@@ -340,7 +340,7 @@ main{
   height: 24%;
   background: #008899;
   border-radius: 3%;
-  margin-top: 6%;
+  margin-top: 12%;
   padding-top: 7%;
   }
 .sub_nav  .website_msg .website_conn{

@@ -4207,6 +4207,28 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
 
 
 
+.nav-about> li {
+  float: left;
+  
+  }
+.nav-about > li > a {
+  border-radius: 4px;
+  color: #bf242a;
+  }
+.nav-about > li + li {
+  margin-left: 2px;
+  }
+.nav-about > li.active > a,
+.nav-about > li.active > a:hover,
+.nav-about > li.active > a:focus {
+  color: #fff;
+  background-color:#bf242a;
+  }
+
+
+
+
+
 .nav-stacked > li {
   float: none;
 }
@@ -6000,6 +6022,30 @@ button.list-group-item-danger.active:focus {
   background-color:#392f41;
   }
 
+
+.panel-about {
+  border-color:#bf242a;
+  }
+.panel-about > .panel-heading {
+  color: white;
+  background-color:#bf242a;
+  border-color:#bf242a;
+  }
+.panel-about > .panel-heading + .panel-collapse > .panel-body {
+  border-top-color:#bf242a;
+  }
+.panel-about > .panel-heading .badge {
+  color: white;
+  background-color: #bf242a;
+  }
+.panel-about > .panel-footer + .panel-collapse > .panel-body {
+  border-bottom-color: #bf242a;
+  background-color:#bf242a;
+  color: white;
+  }
+.panel-about > .panel-footer{
+  background-color:#bf242a;
+  }
 
 
 

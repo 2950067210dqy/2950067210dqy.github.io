@@ -17,7 +17,7 @@
 	
 	<!--	引入jquery-->
 	<script src="js/jquery-3.5.0.js"></script>
-	
+	<script src="js/jquery.cookie.js"></script>
 	<script src="js/bootstrap.js"></script>
 	<script src="js/animate.js"></script>
 	<!--	引入jquery插件鼠标滑动-->
@@ -33,8 +33,8 @@
 			<div class="col-sm-12">
 				<nav>
 					<ul class="nav nav-logo"><!--4152-->
-						<li  class="active"><a href="#" target="_self">注册</a></li>
-						<li ><a href="#" target="_self">登录</a></li>
+						<li ><a href="#" target="_self">注册</a></li>
+						<li  class="active"><a href="#" target="_self">登录</a></li>
 					</ul>
 				</nav>
 			</div>
@@ -64,7 +64,7 @@
 				</div>
 				<div class="panel-body">
 					
-					<form class="form-horizontal" action="#panel_1" id="regist" target="_self">
+					<form class="form-horizontal" action="logo.html#panel_1" id="regist" target="_self" method="get" name="regist">
 						<div class="form-group">
 							<div class="col-sm-8">
 								<input type="email" class="form-control" id="inputEmailByRegist" placeholder="请输入您的邮箱">
@@ -102,7 +102,7 @@
 								<input type="text" class="form-control" id="inputcheckByRegist" placeholder="请输入您的验证码">
 							</div>
 							<div class="col-sm-4 text-left">
-								<canvas id="regist_canvas" style="width: 100px; height: 50px;"></canvas>
+								<a href="javascript:void(0)"  onclick="registcode_init()" id="regist_canvas"></a>
 							</div>
 							<label for="inputcheckByRegist" class="col-sm-2 control-label" id="inputcheckByRegistTip">
 							
@@ -111,7 +111,7 @@
 						
 						<div class="form-group">
 							<div class=" col-sm-6">
-								<button type="submit" class="btn btn-default  btn-block disabled" id="registBtn">注册</button>
+								<button type="submit" class="btn btn-default  btn-block disabled" disabled id="registBtn">注册</button>
 							</div>
 							<div class=" col-sm-6">
 								<button type="reset" class="btn btn-default  btn-block">重置</button>
@@ -138,18 +138,18 @@
 				</div>
 				<div class="panel-body">
 					
-					<form class="form-horizontal" action="index.html" id="logo" target="_parent">
+					<form class="form-horizontal" action="index.html" id="logo" target="_parent" method="get" onsubmit="return check_user()">
 						<div class="form-group ">
 							<div class="col-sm-8">
-								<input type="email" class="form-control" id="inputEmail" placeholder="请输入您的邮箱">
+								<input name="email" type="email" class="form-control" id="inputEmail" placeholder="请输入您的邮箱">
 							</div>
-							<label for="inputEmail" class="col-sm-4 control-label" id="inputEmailTip">
+							<label  for="inputEmail" class="col-sm-4 control-label" id="inputEmailTip">
 							
 							</label>
 						</div>
 						<div class="form-group">
 							<div class="col-sm-8">
-								<input type="password" class="form-control" id="inputPassword" placeholder="请输入您的密码">
+								<input name="password" type="password" class="form-control" id="inputPassword" placeholder="请输入您的密码">
 							</div>
 							<label for="inputPassword" class="col-sm-4 control-label" id="inputPasswordTip">
 							
@@ -160,7 +160,7 @@
 								<input type="text" class="form-control" id="inputcheck" placeholder="请输入您的验证码">
 							</div>
 							<div class="col-sm-4 text-left">
-								<canvas id="logo_canvas" style="width: 100px; height: 50px;"></canvas>
+								<a href="javascript:void(0)" onclick="logocode_init()" id="logo_canvas" ></a>
 							</div>
 							<label for="inputcheck" class="col-sm-2 control-label" id="inputcheckTip">
 							
@@ -178,10 +178,10 @@
 						
 						<div class="form-group">
 							<div class=" col-sm-6">
-								<button type="submit" class="btn btn-default  btn-block disabled">登录</button>
+								<button type="submit" class="btn btn-default  btn-block disabled" disabled id="logoBtn">登录</button>
 							</div>
 							<div class=" col-sm-6">
-								<button type="reset" class="btn btn-default  btn-block">重置</button>
+								<button type="reset" class="btn btn-default  btn-block " >重置</button>
 							</div>
 						</div>
 					</form>

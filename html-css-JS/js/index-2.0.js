@@ -125,8 +125,8 @@ var nav_text_list=[
 	Nav.createNew("虽不新奇,却广泛","我的作品虽不新奇，但不妨来看看哦！","  查看更多","  登录","works.html#panel_0",["#337ab7","#008899"],"use_img/head.jpg"),
 	Nav.createNew("豫章-南昌","豫章故郡，洪都新府,星分翼轸.地接衡庐。","  查看更多","  登录","hometown.html#panel_0",["#460e44","#003472"],"use_img/head_1.jpg"),
 	Nav.createNew("九江学院（JJU）","坐落于庐山之麓、鄱阳湖之畔","  查看更多","  登录","school.html#panel_0",["#640125","#16160e"],"use_img/head_3.jpg"),
-	Nav.createNew("想对我说什么","留言框，联系方式等","  查看更多","  登录","about.html#panel_0",["#337ab7","#008899"],"use_img/head.jpg"),
-	Nav.createNew(" "," ","  注册","  登录","logo.html",["#392f41","#5d513c"],"use_img/head.jpg"),
+	Nav.createNew("想对我说什么","留言框，联系方式等","  查看更多","  登录","about.html#panel_0",["#bf242a","#946243"],"use_img/head_4.jpg"),
+	Nav.createNew(" "," ","  注册","  登录","logo.html",["#392f41","#5d513c"],"use_img/head_5.jpg"),
 ];
 
 
@@ -141,10 +141,51 @@ $(document).ready(
 		nav_position();
 		changeBgBySelf();
 		hero_b_click();
+		
+		check_logo();
 		console.log(resolve);
 	})
 );
+//退出登录
+function exitLogo() {
+	if (confirm("您确定要退出登录吗？")){
+		$.removeCookie("logoing");
+		location.href="index.html";
+	}
+}
 
+
+//判断是否登录，并展示相应的效果
+function check_logo() {
+	var QueryString=window.location.href;
+	QueryString=decodeURIComponent(QueryString);
+	QueryString=QueryString.slice(QueryString.indexOf("?")+1);
+	if(QueryString.indexOf("email")!=-1){
+		logo_changeHtml(QueryString);
+	}
+	if($.cookie("logoing")!=undefined){
+		$("#logo").find("span").html($.cookie("logoing")+"欢迎您,<a href='#' onclick='exitLogo()'>退出登录</a>");
+	}
+}
+//如果登录，就改变HTML
+function logo_changeHtml(string) {
+	var username="";
+	var email=getValue(string,"email");
+	var user=eval('('+$.cookie("user")+')');
+	for(var i =0;i<user.email.length;i++){
+		if(user.email[i]==email){
+			username=user.username[i];
+		}
+	}
+	$("#logo").find("span").text(username+"欢迎您,<a href='#' onclick='exitLogo()'>退出登录</a>");
+	$.cookie("logoing",username,{expires:365});
+	
+}
+//获得get的值
+function getValue(string,name) {
+	var value= string.slice(string.indexOf(name)+name.length+1,string.indexOf("&"));
+	return value;
+}
 
 //用户点击查看更多或登录或注册按钮时
 function hero_b_click() {
@@ -183,19 +224,23 @@ function  changeStyleByFindAllByheader_horizontal(hero_b2_bool=false) {
 		$(".self_info>iframe").attr({"src":"logo.html#panel_1","href":"logo.html#panel_1"});
 		$(".self_info>iframe").contents().find("li").removeClass("active");
 		$($(".self_info>iframe").contents().find("li")[1]).addClass("active");
-		$("header").css({"border-radius":"3%","box-shadow":"none","z-index":"5","opacity":"0.95"});
+		$("header").css({"box-shadow":"none","z-index":"5","opacity":"0.95"});
 		nav_text_list[nav_text_list.length-1].changeAllColor($("nav>ul:first>li")[$("nav>ul:first>li").length-1]);
 	}else {
-		$("header").css({"border-radius":"3%","box-shadow":"none","z-index":"5","background":nav_text_list[nav_newClick_index].getAll_color()[0],"opacity":"0.95"});
+		$("header").css({"box-shadow":"none","z-index":"5","background":nav_text_list[nav_newClick_index].getAll_color()[0],"opacity":"0.95"});
 	}
 	
 	$(".self_info>iframe").contents().find("img").removeClass("img_vertical").addClass("img_horizontal");
+	
+	$(".self_info>iframe").contents().find("li").removeClass("active");
+	$($(".self_info>iframe").contents().find("li")[0]).addClass("active");
+	
 	$("body").css({"background-image":"none","background-color":"whitesmoke"})
 	$("#nav_menu").css({"right":"1%","top":"2%"});
 	$(".hero-content").css({"display":"none"});
 	
 	$("#nav_position_button").css({"display":"none"});
-	$(".self_info").css({"display":"inline-block","width":"73%","top":"9%"});
+	$(".self_info").css({"display":"inline-block","width":"73%","top":"9.5%"});
 	$(".sub_nav").css({"display":"inline-block","top":"8%"});
 	addAnimateCss("header","slideInLeft");
 	addAnimateCss("#nav_menu","slideInRight");
@@ -216,6 +261,10 @@ function  changeStyleByFindAllByheader_vertical(hero_b2_bool=false) {
 	}else {
 		$("header").css({"left":"27%","border-radius":"3%","box-shadow":"none","z-index":"5","background":nav_text_list[nav_newClick_index].getAll_color()[0],"opacity":"0.95"});
 	}
+	
+	$(".self_info>iframe").contents().find("img").removeClass("img_horizontal").addClass("img_vertical");
+	$(".self_info>iframe").contents().find("li").removeClass("active");
+	$($(".self_info>iframe").contents().find("li")[0]).addClass("active");
 	$("body").css({"background-image":"none","background-color":"whitesmoke"})
 	$("#nav_menu").css({"right":"59%","top":"63%"});
 	$(".hero-content").css({"display":"none"});
